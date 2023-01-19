@@ -48,4 +48,11 @@ max_gcd= math.gcd(21, 14)
 # 최소공배수 계산 (최대공약수로 두 수의 곱을 나눈 몫)
 min_lcm= (21*14) // max_gcd
 
+# 재귀함수로 구현한 팩토리얼 예제
+
+def recusive_function(n):
+    if n <= 1:
+        return 1
+    return n * recusive_function(n-1)
+
 print(min_lcm)
