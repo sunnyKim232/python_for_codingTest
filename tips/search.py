@@ -53,7 +53,42 @@ def quick_sort(array, start, end):
     quick_sort(array, right+1, end)
 
 
-quick_sort(array, 0, len(array) -1)
+quick_sort(array, 0, len(array)-1)
 print(array)
 
+## 위의 퀵정렬을 파이썬의 장점을 살려서 리팩토링 (더 직관적인듯)
+## array[:::] 문법은 extended slices 를 찾아볼것
 
+array=[1,5,7,3,9,6,4,8,2]
+
+def quick_sort2(array):
+    if len(array) <=1 :
+        return array
+    pivot= array[0]
+    tail= array[1:]
+
+    left_side= [x for x in tail if x <= pivot]
+    right_side = [x for x in tail if x > pivot]
+
+    return quick_sort2(left_side) + [pivot] + quick_sort2(right_side)
+
+print(quick_sort2(array))
+
+# 계수 정렬(counting sort): 특정 조건이 부합할때만 사용할 수 있지만 매우 빠르게 동작함
+# 특정 조건: 데이터 크기 범위가 제한되어 정수의 형태로 표현할 수 있을때 사용 가능함
+# 배열을 만든 후 해당 데이터가 해당하는지 개수를 세어주는 방식임
+# 하나의 값이 여러번 나올때, 길이가 정해져 있을때 효과적인 방식
+
+
+
+array=[1,5,7,3,9,6,4,8,2,2,3,4,5,6,1,2,2,6,7,8,0]
+
+def counting_sort(array):
+    count= [0] * (max(array) +1)
+    for i in range(len(array)):
+        count[array[i]] += 1
+    for i in range(len(count)):
+        for j in range(count[i]):
+            print(i, end=' ')
+
+print(counting_sort(array))
