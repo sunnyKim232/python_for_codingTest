@@ -29,6 +29,7 @@ print(array)
 # 기본적으로 맨 첫번째 값을 기준 데이터(pivot)으로 설정하여 피벗을 기준으로 작은 값들은 왼쪽 파티션, 큰 값은 오른쪽 파티션으로 나뉘게 된다
 # 이 과정을 재귀적으로 계속 현재 리스트의 값이 1개가 될때까지 반복한다.
 
+array=[1,5,7,3,9,6,4,8,2]
 
 def quick_sort(array, start, end):
     if start >= end:
@@ -44,7 +45,7 @@ def quick_sort(array, start, end):
         # 피벗보다 큰 데이터를 계속 찾음
         while(right>start and array[right] >= array[pivot]):
             right -= 1
-        if(left >= right):
+        if(left > right):
             array[right], array[pivot]= array[pivot], array[right]
         else:
             array[left], array[right] = array[right], array[left]
