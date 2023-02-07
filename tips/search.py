@@ -93,3 +93,38 @@ def counting_sort(array):
             print(i, end=' ')
 
 print(counting_sort(array))
+
+
+# 순차 탐색:특정 데이터를 찾기위해 앞에서부터 데이터를 하나씩 확인함)
+# 이진탐색(binary search)
+# 정렬이 되어있는 리스트에서 탐색범위를 절반씩 좁혀가며 데이터를 탐색함
+# 시작점, 끝점, 중간점을 이용하여 탐색 범위를 설정함
+
+def binary_search(array, target, start, end):
+    if start > end:
+        return None
+    middle= (start+end) // 2
+    if array[middle] > target:
+        return binary_search(array, target, start, middle -1)
+    else:
+        return binary_search(array, target, middle +1, end)
+
+
+# 이진탐색 라이브러리 활용
+# bisect_left(arr, target): arr의 정렬을 유지하면서 target이 들어갈 왼쪽 인덱스 자리를 찾아줌
+# bisect_right(arr, target): arr의 정렬을 유지하면서 target이 들어갈 오른쪽 인덱스 자리를 찾아줌
+from bisect import bisect_left, bisect_right
+a= [1,2,4,4,8]
+x= 4
+
+print(bisect_left(a, x))
+print(bisect_right(a, x))
+
+# 이진탐색 라이브러리를 활용해 target의 원소가 몇개있는지 추출해낼 수 있음
+def count_by_range(arr, left_value, right_value):
+    left_idx=bisect_left(arr, left_value)
+    right_idx= bisect_right(arr, right_value)
+    return right_idx-left_idx
+
+# 파라매트릭 서치: 최적화 문제를 결정의 문제로 바꾸어 해결하는 것 ex)특정한 조건을 만족하는 가장 알맞은 값을 빠르게 찾는 최적화 문제일경우
+# --> 다음시간에..
