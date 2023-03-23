@@ -35,20 +35,21 @@ def topology_sort():
     for i in range(1, v+1):
         ## 맨 처음 진입차수가 0인 것을 넣어줌
         if indegree[i] ==0:
-            q.append[i]
+            q.append(i)
         ## 큐가 빌때까지 반복
-        while q:
-            ## 현재 보고있는 노드를 꺼내서
-            now= q.popleft()
-            ## 결과값에 먼저 넣어주고
-            result.append(now)
-            ## 현재 노드와 연결된 노드를 찾아서
-            for i in graph[now]:
-                ## 간선 삭제
-                indegree[i] -= 1
-                ## 만약 삭제해준 후에 간선이 0이라면
-                if indegree[i] == 0:
-                    ## 큐애 넣어준다.
-                    q.append(i)
+    while q:
+        ## 현재 보고있는 노드를 꺼내서
+        now= q.popleft()
+        ## 결과값에 먼저 넣어주고
+        result.append(now)
+          ## 현재 노드와 연결된 노드를 찾아서
+        for i in graph[now]:
+              ## 간선 삭제
+            indegree[i] -= 1
+             ## 만약 삭제해준 후에 간선이 0이라면
+            if indegree[i] == 0:
+                q.append(i)
+    for i in result:
+        print(i, end=' ')
 
 topology_sort()
