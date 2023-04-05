@@ -97,3 +97,23 @@ def how_many_prime_number(n):
             print(i, end=' ')
 
 how_many_prime_number(n)
+
+
+## 투 포인터 알고리즘: 리스트를 순차적으로 접근해야 할때 두개의 점의 위치를 기록하면서 처리하는 알고리즘
+## 예시 1. 특정한 합을 가지는 부분 연속 수열 찾기(합이 m이 되도록 하는 경우의 수를 구하는 문제)
+
+n= 5
+m= 5
+data=[1,2,3,2,5]
+
+count=0
+interval_sum=0
+end=0
+
+for start in range(n):
+    while interval_sum< m and end<n:
+        interval_sum += data[end]
+        end += 1
+    if interval_sum == m:
+        count += 1
+    interval_sum -= data[start]
